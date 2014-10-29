@@ -1,18 +1,21 @@
 {
-"name": "skafandri/synchronizeds",
-"description": "synchronizeds",
-"version": "0.0.1",
-"homepage": "https://github.com/skafandri/SynchronizedS",
-"license": "GPL-V2",
-"authors": [
-{
-"name": "ilyes kooli",
-"email": "kooli.ilyes@gmail.com",
-"homepage": "http://www.ilyeskooli.com"
-}
-],
-"require": {
-"robloach/component-installer": "*"
-},
-"component-dir": "vendor/SynchronizedS"
+    "name": "skafandri/synchronizeds",
+    "description": "synchronizeds",
+    "version": "0.0.1",
+    "homepage": "https://github.com/skafandri/SynchronizedS",
+    "license": "GPL-V2",
+    "authors": [
+        {
+            "name": "ilyes kooli",
+            "email": "kooli.ilyes@gmail.com",
+            "homepage": "http://www.ilyeskooli.com"
+        }
+    ],
+    "require": {
+        "robloach/component-installer": "*"
+    },
+    "autoload": {
+        "psr-0": { "SynchronizedBundle\\": "synchronizeds/" }
+    },
+    "component-dir": "vendor/SynchronizedS"
 }
