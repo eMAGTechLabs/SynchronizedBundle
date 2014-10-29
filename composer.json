@@ -15,7 +15,6 @@
         "robloach/component-installer": "*"
     },
     "autoload": {
-        "psr-0": { "Skafandri\\": "synchronizeds/Skafandri/SynchronizedBundle/" }
-    },
-    "component-dir": "vendor/SynchronizedS"
+        "psr-0": { "Skafandri\\": "Skafandri/SynchronizedBundle/" }
+    }
 }
