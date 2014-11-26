@@ -17,12 +17,25 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
+        /**
+         * @var TreeBuilder $treeBuilder
+         */
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('synchronized');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        
+        $rootNode->children()
+                ->scalarNode('driver')->defaultValue('file')->end()
+                ->scalarNode('path')->defaultValue('"%kernel.root_dir%/synchronized.lock')->end()
+                ->arrayNode('services')
+                    ->useAttributeAsKey('key')
+                    ->prototype('array')
+                    ->children()
+                        ->scalarNode('method')->end()
+                        ->scalarNode('action')->defaultValue('wait')->end()
+                        ->scalarNode('argument')->defaultValue(false)->end()
+                ->end()
+            ->end()
+                ;
 
         return $treeBuilder;
     }
