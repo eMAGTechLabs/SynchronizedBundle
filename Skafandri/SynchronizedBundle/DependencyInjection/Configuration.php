@@ -12,6 +12,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+
+    const DEFAULT_ACTION = 'wait';
+    const DEFAULT_ARGUMENT = null;
+    const DEFAULT_RETRY_DURATION = 10000;
+    const DEFAULT_RETRY_COUNT = 10;
+
     /**
      * {@inheritDoc}
      */
@@ -22,21 +28,32 @@ class Configuration implements ConfigurationInterface
          */
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('synchronized');
-        
+
         $rootNode->children()
-                ->scalarNode('driver')->defaultValue('file')->end()
-                ->scalarNode('path')->defaultValue('"%kernel.root_dir%/synchronized.lock')->end()
-                ->arrayNode('services')
-                    ->useAttributeAsKey('key')
-                    ->prototype('array')
-                    ->children()
-                        ->scalarNode('method')->end()
-                        ->scalarNode('action')->defaultValue('wait')->end()
-                        ->scalarNode('argument')->defaultValue(false)->end()
+                ->scalarNode('driver')->defaultValue('file')
+                ->validate()
+                ->ifTrue(function ($v) {
+                    var_dump($v);
+                    return false;
+                })
+                ->thenInvalid('Invalid auto generate mode value %s')
                 ->end()
-            ->end()
-                ;
+                ->end()
+                ->scalarNode('path')->defaultValue('%kernel.root_dir%/synchronized.lock')->end()
+                ->arrayNode('services')
+                ->useAttributeAsKey('key')
+                ->prototype('array')
+                ->children()
+                ->scalarNode('method')->end()
+                ->scalarNode('action')->defaultValue(self::DEFAULT_ACTION)->end()
+                ->scalarNode('argument')->defaultValue(self::DEFAULT_ARGUMENT)->end()
+                ->scalarNode('retry_duration')->defaultValue(self::DEFAULT_RETRY_DURATION)->end()
+                ->scalarNode('retry_count')->defaultValue(self::DEFAULT_RETRY_COUNT)
+                ->end()
+                ->end()
+                ->end();
 
         return $treeBuilder;
     }
+
 }

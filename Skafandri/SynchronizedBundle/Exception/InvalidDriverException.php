@@ -2,7 +2,7 @@
 
 namespace Skafandri\SynchronizedBundle\Exception;
 
-class SynchronizedException extends \Exception
+class InvalidDriverException extends SynchronizedException
 {
     //
 }
