@@ -17,6 +17,7 @@ class Configuration implements ConfigurationInterface
     const DEFAULT_ARGUMENT = null;
     const DEFAULT_RETRY_DURATION = 100000;
     const DEFAULT_RETRY_COUNT = 50;
+    const DEFAULT_PATH = '%kernel.root_dir%/synchronized.lock';
 
     /**
      * {@inheritDoc}
@@ -39,7 +40,7 @@ class Configuration implements ConfigurationInterface
                 ->thenInvalid('Invalid auto generate mode value %s')
                 ->end()
                 ->end()
-                ->scalarNode('path')->defaultValue('%kernel.root_dir%/synchronized.lock')->end()
+                ->scalarNode('path')->defaultValue(self::DEFAULT_PATH)->end()
                 ->arrayNode('services')
                 ->useAttributeAsKey('key')
                 ->prototype('array')
