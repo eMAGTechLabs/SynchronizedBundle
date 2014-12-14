@@ -21,6 +21,7 @@ class SynchronizedService
     private $retryDuration;
     private $retryCount;
     private $retryInfinite;
+    private $serviceClass;
 
     public function __construct($originalService, DriverInterface $driver, $synchronizedMethod, $action, $argument, $retryDuration, $retryCount)
     {
@@ -32,6 +33,7 @@ class SynchronizedService
         $this->retryDuration = $retryDuration;
         $this->retryCount = $retryCount;
         $this->retryInfinite = ($retryCount === -1);
+        $this->serviceClass = get_class($originalService);
         $this->logDebug(
                 sprintf(
                         'Synchronized service instance for %s::%s(%s) [driver:%s][action:%s][retryDuration:%s][retryCount:%s]', get_class($originalService), $synchronizedMethod, $argument, get_class($driver), $action, $retryDuration, $retryCount)
@@ -76,7 +78,7 @@ class SynchronizedService
 
     private function getLockName($arguments)
     {
-        $lockName = $this->synchronizedMethod;
+        $lockName = $this->serviceClass . ' ' . $this->synchronizedMethod;
         if (array_key_exists($this->argument, $arguments)) {
             $argumentHash = $this->getHashFromValue($arguments[$this->argument]);
 
@@ -87,8 +89,8 @@ class SynchronizedService
 
     private function getHashFromValue($value)
     {
-        if (is_array($value)) {
-            return serialize($value);
+        if (is_array($value) || is_object($value)) {
+            return md5(serialize($value));
         }
 
         return $value;
