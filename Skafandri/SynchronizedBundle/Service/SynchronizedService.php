@@ -43,6 +43,7 @@ class SynchronizedService
         if ($name === $this->synchronizedMethod) {
             $lockName = $this->getLockName($arguments);
             if (!$this->getLock($lockName, $this->retryCount)) {
+                $this->logDebug(sprintf('Failed to acquirelock "%s"', $lockName));
                 return false;
             }
             $return = call_user_func_array(array($this->originalService, $name), $arguments);
@@ -57,10 +58,10 @@ class SynchronizedService
         if (!$this->retryInfinite && $retries < 0) {
             return false;
         }
-        $this->logDebug(sprintf('getting lock "%s"', $lockName));
+        $this->logDebug(sprintf('Trying to get lock "%s"', $lockName));
         if (!$this->driver->getLock($lockName)) {
-            $this->logDebug(sprintf('cannot get lock "%s"', $lockName));
-            usleep($this->retryTimeout);
+            $this->logDebug(sprintf('Failed, %s trials left to get lock "%s"', $retries, $lockName));
+            usleep($this->retryDuration);
             return $this->getLock($lockName, $retries - 1);
         }
         $this->logDebug(sprintf('lock aquired "%s"', $lockName));
@@ -77,9 +78,20 @@ class SynchronizedService
     {
         $lockName = $this->synchronizedMethod;
         if (array_key_exists($this->argument, $arguments)) {
-            $lockName .= sprintf('_%s_%s', $this->argument, $arguments[$this->argument]);
+            $argumentHash = $this->getHashFromValue($arguments[$this->argument]);
+
+            $lockName .= sprintf('_%s_%s', $this->argument, $argumentHash);
         }
         return $lockName;
+    }
+
+    private function getHashFromValue($value)
+    {
+        if (is_array($value)) {
+            return serialize($value);
+        }
+
+        return $value;
     }
 
     private function logDebug($message)

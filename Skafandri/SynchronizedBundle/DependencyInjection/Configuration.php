@@ -15,8 +15,8 @@ class Configuration implements ConfigurationInterface
 
     const DEFAULT_ACTION = 'wait';
     const DEFAULT_ARGUMENT = null;
-    const DEFAULT_RETRY_DURATION = 10000;
-    const DEFAULT_RETRY_COUNT = 10;
+    const DEFAULT_RETRY_DURATION = 100000;
+    const DEFAULT_RETRY_COUNT = 50;
 
     /**
      * {@inheritDoc}
