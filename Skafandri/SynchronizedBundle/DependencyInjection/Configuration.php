@@ -18,6 +18,7 @@ class Configuration implements ConfigurationInterface
     const DEFAULT_RETRY_DURATION = 100000;
     const DEFAULT_RETRY_COUNT = 50;
     const DEFAULT_PATH = '%kernel.root_dir%/synchronized.lock';
+    const DEFAULT_MEMCACHED_SERVICE = 'memcached';
 
     /**
      * {@inheritDoc}
@@ -31,14 +32,8 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('synchronized');
 
         $rootNode->children()
-                ->scalarNode('driver')->defaultValue('file')
-                ->validate()
-                ->ifTrue(function ($v) {
-                    var_dump($v);
-                    return false;
-                })
-                ->thenInvalid('Invalid auto generate mode value %s')
-                ->end()
+                ->scalarNode('driver')->defaultValue('file')->end()
+                ->scalarNode('memcached_service')->defaultValue('@memcached')
                 ->end()
                 ->scalarNode('path')->defaultValue(self::DEFAULT_PATH)->end()
                 ->arrayNode('services')

@@ -63,6 +63,10 @@ class SynchronizedExtension extends Extension
                 $driverClass = 'Skafandri\SynchronizedBundle\Driver\File';
                 $arguments[] = $config['path'];
                 break;
+            case DriverInterface::DRIVER_MEMCACHED:
+                $driverClass = 'Skafandri\SynchronizedBundle\Driver\Memcached';
+                $arguments[] = $config['memcached_service'];
+                break;
             default:
                 throw new InvalidDriverException(sprintf('Invalid driver "%s", valid drivers are (%s)', $config['driver'], join(', ', $this->validDrivers)));
         }
