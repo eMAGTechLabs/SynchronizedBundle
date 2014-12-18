@@ -1,7 +1,10 @@
 #SynchronizedS
 Synchronized Symfony bundle
 ##Instalation
-via composer ````require: {"skafandri/synchronizeds": "dev-master"}````
+via composer 
+````
+require: {"skafandri/synchronizeds": "dev-master"}
+````
 and load the bundle in your AppKernel.php
 ````
 new Skafandri\SynchronizedBundle\SynchronizedBundle()
