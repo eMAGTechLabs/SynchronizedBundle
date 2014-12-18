@@ -1,6 +1,11 @@
 #SynchronizedS
+Synchronized Symfony bundle
 ##Instalation
-
+via composer ````require: {"skafandri/synchronizeds": "dev-master"}````
+and load the bundle in your AppKernel.php
+````
+new Skafandri\SynchronizedBundle\SynchronizedBundle()
+````
 ##Usage
 
 The most common use case is to synchronize a service method.
