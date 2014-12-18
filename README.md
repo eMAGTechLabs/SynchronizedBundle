@@ -1,7 +1,6 @@
 #SynchronizedS
 ##Instalation
 
-
 ##Usage
 
 The most common use case is to synchronize a service method.
