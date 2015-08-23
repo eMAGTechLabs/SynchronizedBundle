@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="synchronized_driver.debug" class="Sms\SynchronizedBundle\Driver\Debug">
+            <tag name='synchronized.driver' type='debug'/>
+        </service>
+        <service id="synchronized_driver.file" class="Sms\SynchronizedBundle\Driver\File">
+            <argument>%synchronized.lock_path%</argument>
+            <tag name='synchronized.driver' type='file'/>
+        </service>
+    </services>
+</container>

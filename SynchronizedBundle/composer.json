@@ -1,0 +1,27 @@
+{
+    "name": "symfony-micro-services/synchronized-bundle",
+    "description": "Symfony microservices Synchronized bundle",
+    "version": "0.0.1",
+    "homepage": "https://github.com/symfony-micro-services/SynchronizedBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ilyes kooli",
+            "email": "kooli.ilyes@gmail.com",
+            "homepage": "http://www.ilyeskooli.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.7",
+        "symfony/console": "~2.7"
+    },
+    "require-dev": {
+        "symfony/process": "~2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sms\\SynchronizedBundle\\": ""
+        }
+    }
+}

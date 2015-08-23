@@ -1,9 +1,10 @@
 <?php
 
-namespace Skafandri\SynchronizedBundle\Driver;
+namespace Sms\SynchronizedBundle\Driver;
 
 abstract class AbstractDriver implements DriverInterface
 {
+
     private $namespace;
 
     public function getLock($lockName)
@@ -18,10 +19,6 @@ abstract class AbstractDriver implements DriverInterface
         $this->unlock($lockId);
     }
 
-    public function setNameSpace($namespace)
-    {
-        $this->namespace = $namespace;
-    }
 
     private function getLockId($lockName)
     {

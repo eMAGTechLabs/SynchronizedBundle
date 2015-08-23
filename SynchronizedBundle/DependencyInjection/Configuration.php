@@ -1,7 +1,8 @@
 <?php
 
-namespace Skafandri\SynchronizedBundle\DependencyInjection;
+namespace Sms\SynchronizedBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -32,24 +33,29 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('synchronized');
 
         $rootNode->children()
-                ->scalarNode('driver')->defaultValue('file')->end()
-                ->scalarNode('memcached_service')->defaultValue('@memcached')
-                ->end()
-                ->scalarNode('path')->defaultValue(self::DEFAULT_PATH)->end()
-                ->arrayNode('services')
-                ->useAttributeAsKey('key')
-                ->prototype('array')
-                ->children()
-                ->scalarNode('method')->end()
-                ->scalarNode('action')->defaultValue(self::DEFAULT_ACTION)->end()
-                ->scalarNode('argument')->defaultValue(self::DEFAULT_ARGUMENT)->end()
-                ->scalarNode('retry_duration')->defaultValue(self::DEFAULT_RETRY_DURATION)->end()
-                ->scalarNode('retry_count')->defaultValue(self::DEFAULT_RETRY_COUNT)
-                ->end()
-                ->end()
+                ->scalarNode('prefix')->defaultValue('synchronized')->end()
                 ->end();
+        $this->addLocks($rootNode);
 
         return $treeBuilder;
+    }
+
+    private function addLocks(ArrayNodeDefinition $node)
+    {
+
+        $node->children()
+                ->arrayNode('locks')
+                ->requiresAtLeastOneElement()
+                ->prototype('array')
+                ->children()
+                ->scalarNode('service')->end()
+                ->scalarNode('method')->defaultNull()->end()
+                ->scalarNode('argument')->defaultNull()->end()
+                ->scalarNode('driver')->defaultValue('debug')->end()
+                ->end()
+                ->end()
+                ->end()
+        ;
     }
 
 }

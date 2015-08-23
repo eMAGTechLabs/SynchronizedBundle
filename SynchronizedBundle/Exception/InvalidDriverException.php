@@ -1,6 +1,6 @@
 <?php
 
-namespace Skafandri\SynchronizedBundle\Exception;
+namespace Sms\SynchronizedBundle\Exception;
 
 class InvalidDriverException extends SynchronizedException
 {
