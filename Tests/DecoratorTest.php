@@ -38,7 +38,7 @@ class DecoratorTest extends AbstractTest
     {
         $fileLock = new File('lock');
         $fileLock->clearLocks();
-        $p = new Process('php Tests/FileLockCommand.php test:file -s 2');
+        $p = new Process('php Tests/FileLockCommand.php test:file -s 5');
         $p->start();
         sleep(1);
         $decorator = new Decorator(new TestService(), 'test_service');
@@ -50,14 +50,11 @@ class DecoratorTest extends AbstractTest
     
     public function testSuccessFileDriver()
     {
-        $pt = new Process('ls -la lock');
-        $pt->mustRun();
-        echo $pt->getOutput();
         $fileLock = new File('lock');
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
-        sleep(2);
+        sleep(4);
         $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
