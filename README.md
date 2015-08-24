@@ -1,4 +1,5 @@
 #SynchronizedBundle
+Build Status: [![Build Status](https://api.travis-ci.org/symfony-micro-services/SynchronizedBundle.png?branch=master)](https://travis-ci.org/symfony-micro-services/SynchronizedBundle)
 ##Instalation
 via composer
 ````
