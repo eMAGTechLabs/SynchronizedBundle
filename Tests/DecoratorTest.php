@@ -50,6 +50,9 @@ class DecoratorTest extends AbstractTest
     
     public function testSuccessFileDriver()
     {
+        $pt = new Process('ls -la lock');
+        $pt->mustRun();
+        echo $pt->getOutput();
         $fileLock = new File('lock');
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
