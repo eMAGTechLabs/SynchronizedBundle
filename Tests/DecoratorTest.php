@@ -54,7 +54,7 @@ class DecoratorTest extends AbstractTest
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
-        sleep(4);
+        sleep(5);
         $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
