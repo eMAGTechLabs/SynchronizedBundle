@@ -46,7 +46,7 @@ synchronized:
     </tr>
     <tr>
       <td>file</td>
-      <td>uses [flock](http://php.net/manual/en/function.flock.php)<br>If intended to use in a production environment, make sure the path you use is shared across all your servers (ie. network mount)</td>
+      <td>uses <a href="http://php.net/manual/en/function.flock.php">flock</a><br>If intended to use in a production environment, make sure the path you use is shared across all your servers (ie. network mount)</td>
     </tr>
     <tr>
       <td>mysql</td>
