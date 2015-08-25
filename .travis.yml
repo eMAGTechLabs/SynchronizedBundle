@@ -29,9 +29,11 @@ before_install:
 install:
   - if [ "$deps" = "no" ]; then composer install; fi;
   - if [ "$deps" = "low" ]; then composer --prefer-lowest --prefer-stable update; fi;
+  - ./travis-tool.sh github_package jimhester/covr
 
 script:
   - ./vendor/bin/phpunit -v --coverage-clover ./build/logs/clover.xml
 
 after_script:
     - php ./vendor/bin/coveralls -v
+    - Rscript -e 'covr::coveralls()'
