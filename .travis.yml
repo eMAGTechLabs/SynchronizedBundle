@@ -34,4 +34,5 @@ script:
   - ./vendor/bin/phpunit -v --coverage-clover=coverage.clover
 
 after_script:
-    - php ./vendor/bin/coveralls -v
+    - if [ "$TRAVIS_PHP_VERSION" != "nightly" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+    - if [ "$TRAVIS_PHP_VERSION" != "nightly" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
