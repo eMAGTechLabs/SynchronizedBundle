@@ -45,7 +45,12 @@ class DecoratorTest extends AbstractTest
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
         $decorator->addLock($lock);
-        $decorator->sleep(1);
+        try {
+            $decorator->sleep(1);
+        } catch(\Exception $exception){
+            $p->stop();
+            throw $exception;
+        }
     }
     
     public function testSuccessFileDriver()
@@ -60,6 +65,7 @@ class DecoratorTest extends AbstractTest
         $lock->setDriver($fileLock)->setMethod('sleep');
         $decorator->addLock($lock);
         $decorator->sleep(1);
+        $p->stop();
         return $this->assertTrue(true);
     }
     
@@ -74,6 +80,7 @@ class DecoratorTest extends AbstractTest
         $lock->setDriver($fileLock)->setMethod('sleep')->setArgumentIndex(1);
         $decorator->addLock($lock);
         $decorator->sleep(1, array(1));
+        $p->stop();
         return $this->assertTrue(true);
     }
 

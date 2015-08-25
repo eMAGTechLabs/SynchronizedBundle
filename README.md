@@ -1,6 +1,6 @@
 #SynchronizedBundle
 [![Build Status](https://api.travis-ci.org/symfony-micro-services/SynchronizedBundle.png?branch=master)](https://travis-ci.org/symfony-micro-services/SynchronizedBundle)
-[![Code Coverage](https://scrutinizer-ci.com/g/symfony-micro-services/SynchronizedBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/symfony-micro-services/SynchronizedBundle/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/symfony-micro-services/SynchronizedBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/symfony-micro-services/SynchronizedBundle?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/symfony-micro-services/SynchronizedBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/symfony-micro-services/SynchronizedBundle/?branch=master)
 
 ##Instalation
