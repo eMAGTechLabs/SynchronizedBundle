@@ -1,5 +1,6 @@
 #SynchronizedBundle
-Build Status: [![Build Status](https://api.travis-ci.org/symfony-micro-services/SynchronizedBundle.png?branch=master)](https://travis-ci.org/symfony-micro-services/SynchronizedBundle)
+[![Build Status](https://api.travis-ci.org/symfony-micro-services/SynchronizedBundle.png?branch=master)](https://travis-ci.org/symfony-micro-services/SynchronizedBundle)
+[![Coverage Status](https://coveralls.io/repos/symfony-micro-services/SynchronizedBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/symfony-micro-services/SynchronizedBundle?branch=master)
 ##Instalation
 via composer
 ````
