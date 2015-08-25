@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "symfony/process": "~2.7",
-        "phpunit/phpunit": "~3.7",
+        "phpunit/phpunit": "~4",
         "satooshi/php-coveralls": "~0.6.1"
     },
     "autoload": {
