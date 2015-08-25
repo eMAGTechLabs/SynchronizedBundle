@@ -32,6 +32,7 @@ install:
 
 script:
   - ./vendor/bin/phpunit -v --coverage-clover ./build/logs/clover.xml
+  - cat ./build/logs/clover.xml
 
 after_script:
     - php ./vendor/bin/coveralls -v
