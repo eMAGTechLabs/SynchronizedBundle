@@ -1,7 +1,6 @@
 {
     "name": "symfony-micro-services/synchronized-bundle",
     "description": "Symfony microservices Synchronized bundle",
-    "version": "0.0.1",
     "homepage": "https://github.com/symfony-micro-services/SynchronizedBundle",
     "license": "MIT",
     "authors": [
