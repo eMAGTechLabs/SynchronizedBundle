@@ -84,7 +84,7 @@ synchronized:
 
 ##Contributing
 All contributions are welcome.
-- Fork
+- [Fork](#fork-destination-box)
 - Do the magic
 - Pull request
 
