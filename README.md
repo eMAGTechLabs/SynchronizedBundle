@@ -1,7 +1,9 @@
 #SynchronizedBundle
 [![Build Status](https://api.travis-ci.org/symfony-micro-services/SynchronizedBundle.png?branch=master)](https://travis-ci.org/symfony-micro-services/SynchronizedBundle)
 [![Coverage Status](https://coveralls.io/repos/symfony-micro-services/SynchronizedBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/symfony-micro-services/SynchronizedBundle?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd/small.png)](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd)
+
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd/big.png)](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd)
 
 ##Instalation
 via composer
