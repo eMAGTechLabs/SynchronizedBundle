@@ -14,6 +14,8 @@ class Decorator
     private $locks = array();
     
     private $lockPrefix;
+    
+    private $originalService;
 
     public function __construct($originalService, $lockPrefix)
     {

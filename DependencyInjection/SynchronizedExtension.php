@@ -2,7 +2,6 @@
 
 namespace Sms\SynchronizedBundle\DependencyInjection;
 
-use Sms\SynchronizedBundle\Driver\DriverInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
