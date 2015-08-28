@@ -84,10 +84,7 @@ synchronized:
 
 ##Contributing
 All contributions are welcome.
-- <a data-ga-click="Repository, show fork modal, action:files#disambiguate; text:Fork" rel="facebox" aria-label="Fork your own copy of symfony-micro-services/SynchronizedBundle to your account" title="Fork your own copy of symfony-micro-services/SynchronizedBundle to your account" class="btn btn-sm btn-with-count" href="#fork-destination-box">
-            <span class="octicon octicon-repo-forked"></span>
-            Fork
-          </a>
+- Fork
 - Do the magic
 - Pull request
 
