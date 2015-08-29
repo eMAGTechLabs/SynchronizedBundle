@@ -13,7 +13,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        echo(sprintf('Starting test: %s:%s', get_class($this), $this->getName()) . "\n");
+        echo(sprintf('[%s] Starting test: %s:%s', date('Y-m-d H:i:s'), get_class($this), $this->getName()) . "\n");
     }
 
     protected function loadConfiguration($container, $array, $compile = true)
