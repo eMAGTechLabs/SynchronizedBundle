@@ -214,8 +214,8 @@ Each driver should be able to request extra configurations (name, type) to be pr
  </table>
 <br/>
 
- ##Logging
+##Logging
  Intensive logging with *debug* level to help development. Comprehensive logging with *info* level that will be useful in production.
 
- ##Code quality
+##Code quality
  SynchronizedBundle have (and will maintain) ![Coverage Status](https://coveralls.io/repos/symfony-micro-services/SynchronizedBundle/badge.svg?branch=master&service=github) and ![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd/big.png)
