@@ -5,7 +5,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Sms\SynchronizedBundle\Decorator;
 use Sms\SynchronizedBundle\Driver\File;
 use Sms\SynchronizedBundle\Lock;
-use Sms\SynchronizedBundle\Tests\TestService;
+use Sms\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
+use Sms\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,7 +24,7 @@ class FileLockCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $decorator = new Decorator(new TestService(), 'test_service');
+        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
         $lock = new Lock();
         $lock->setDriver(new File('lock'))->setMethod('sleep');
         $decorator->addLock($lock);

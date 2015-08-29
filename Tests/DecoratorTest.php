@@ -5,7 +5,10 @@ namespace Sms\SynchronizedBundle\Tests;
 use Sms\SynchronizedBundle\Decorator;
 use Sms\SynchronizedBundle\Driver\Debug;
 use Sms\SynchronizedBundle\Driver\File;
+use Sms\SynchronizedBundle\Event\LockEvent;
 use Sms\SynchronizedBundle\Lock;
+use Sms\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
+use Sms\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\Process\Process;
 
 class DecoratorTest extends AbstractTest
@@ -13,7 +16,7 @@ class DecoratorTest extends AbstractTest
 
     public function testGetWithMethodLock()
     {
-        $decorator = new Decorator(new TestService(), 'test_service');
+        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
         $lock = new Lock();
         $lock->setDriver(new Debug())->setMethod('sleep1');
         $decorator->addLock($lock);
@@ -23,7 +26,7 @@ class DecoratorTest extends AbstractTest
 
     public function testGetWithArgumentLock()
     {
-        $decorator = new Decorator(new TestService(), 'test_service');
+        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
         $lock = new Lock();
         $lock->setDriver(new Debug())->setMethod('sleep')->setArgumentIndex(1);
         $decorator->addLock($lock);
@@ -31,7 +34,7 @@ class DecoratorTest extends AbstractTest
     }
 
     /**
-     * @expectedException Sms\SynchronizedBundle\Exception\CannotAquireLockException
+     * @expectedException \Sms\SynchronizedBundle\Exception\CannotAquireLockException
      * @expectedExceptionMessage test_service_sleep
      */
     public function testFailedFileDriver()
@@ -41,7 +44,8 @@ class DecoratorTest extends AbstractTest
         $p = new Process('php Tests/FileLockCommand.php test:file -s 5');
         $p->start();
         sleep(1);
-        $decorator = new Decorator(new TestService(), 'test_service');
+        $eventDispatcher = new TestEventDispatcher();
+        $decorator = new Decorator(new TestService(), 'test_service', $eventDispatcher);
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
         $decorator->addLock($lock);
@@ -49,6 +53,7 @@ class DecoratorTest extends AbstractTest
             $decorator->sleep(1);
         } catch(\Exception $exception){
             $p->stop();
+            $this->assertArrayHasKey(LockEvent::EVENT_FAILURE_GET_LOCK, $eventDispatcher->getEvents());
             throw $exception;
         }
     }
@@ -60,7 +65,7 @@ class DecoratorTest extends AbstractTest
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
         sleep(5);
-        $decorator = new Decorator(new TestService(), 'test_service');
+        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
         $decorator->addLock($lock);
@@ -75,7 +80,7 @@ class DecoratorTest extends AbstractTest
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
-        $decorator = new Decorator(new TestService(), 'test_service');
+        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep')->setArgumentIndex(1);
         $decorator->addLock($lock);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests;
+namespace Sms\SynchronizedBundle\Tests\Stubs;
 
 class TestService
 {
@@ -9,7 +9,7 @@ class TestService
     {
         $this->sleep(1);
     }
-    
+
     public function sleep2()
     {
         $this->sleep(2);
@@ -18,6 +18,12 @@ class TestService
     public function sleep($seconds, $argument = null)
     {
         sleep($seconds);
+        return $argument;
+    }
+
+    public function doNothing()
+    {
+        
     }
 
 }

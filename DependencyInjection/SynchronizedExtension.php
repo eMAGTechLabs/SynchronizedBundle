@@ -33,7 +33,7 @@ class SynchronizedExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        if(!$container->hasParameter('synchronized.lock_path')){
+        if (!$container->hasParameter('synchronized.lock_path')) {
             $container->setParameter('synchronized.lock_path', '%kernel.root_dir%/synchronized.lock');
         }
         $loader->load('synchronized.xml');
@@ -55,7 +55,7 @@ class SynchronizedExtension extends Extension
 
             $lockDefinition = new Definition('Sms\SynchronizedBundle\Lock');
             $lockDefinition->addMethodCall('setMethod', array($method));
-            $lockDefinition->addMethodCall('setArgument', array($argument));
+            $lockDefinition->addMethodCall('setArgumentIndex', array($argument));
             $lockDefinition->addMethodCall('setDriver', array(new Reference(sprintf('synchronized_driver.%s', $driver))));
             $container->addDefinitions(array($id => $lockDefinition));
             $this->decorateService($service, $id);
@@ -73,6 +73,9 @@ class SynchronizedExtension extends Extension
                     ->addArgument($serviceId)
                     ->setPublic(false)
                     ->setDecoratedService($serviceId);
+            if ($this->container->has('event_dispatcher')) {
+                $definition->addArgument(new Reference('event_dispatcher'));
+            }
         }
         $definition->addMethodCall('addLock', array(new Reference($lockId)));
     }

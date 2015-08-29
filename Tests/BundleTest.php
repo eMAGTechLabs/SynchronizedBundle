@@ -9,7 +9,7 @@ class BundleTest extends AbstractTest
 
     public function testFullConfiguration()
     {
-        $this->loadConfiguration(array(array(
+        $this->loadConfiguration($this->getContainer(), array(array(
                 'prefix' => 'test',
                 'locks' => array('lock1' => array(
                         'service' => 'test_service',
@@ -24,7 +24,7 @@ class BundleTest extends AbstractTest
 
     public function testDefaultConfiguration()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array(
                     'lock1' => array(
                         'service' => 'test_service',
@@ -37,7 +37,7 @@ class BundleTest extends AbstractTest
 
     public function testFileDriverConfiguration()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array('lock1' => array(
                         'service' => 'test_service',
                         'driver' => 'file'
@@ -48,7 +48,7 @@ class BundleTest extends AbstractTest
     
     public function testSameServiceDifferentMethodsLocks()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array(
                     'lock1' => array(
                         'service' => 'test_service',
@@ -69,7 +69,7 @@ class BundleTest extends AbstractTest
      */
     public function testInvalidDriverClassConfiguration()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array('lock1' => array(
                         'service' => 'test_service',
                         'driver' => 'invalid'
@@ -87,7 +87,7 @@ class BundleTest extends AbstractTest
      */
     public function testSameServiceLocks()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array(
                     'lock1' => array(
                         'service' => 'test_service',
@@ -105,7 +105,7 @@ class BundleTest extends AbstractTest
      */
     public function testSameServiceMethodLocks()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array(
                     'lock1' => array(
                         'service' => 'test_service',
@@ -125,7 +125,7 @@ class BundleTest extends AbstractTest
      */
     public function testSameServiceMethodArgumentLocks()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array(
                     'lock1' => array(
                         'service' => 'service1',
@@ -144,7 +144,7 @@ class BundleTest extends AbstractTest
     
     public function testRegisterDriver()
     {
-        $container = $this->loadConfiguration(array(array(
+        $container = $this->loadConfiguration($this->getContainer(), array(array(
                 'locks' => array('lock1' => array(
                         'service' => 'test_service',
                         'driver' => 'new'
