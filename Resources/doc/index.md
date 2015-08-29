@@ -60,7 +60,7 @@ Consider the following scenario
   <tr>
     <td>Request1</td>
     <td>doReservation(1, 5)</td>
-    <td>**0** ? **-2** ? **Error**??</td>
+    <td>0 ? -2 ? Error??</td>
   </tr>
 </table>
 
