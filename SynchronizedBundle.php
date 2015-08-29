@@ -3,7 +3,6 @@
 namespace Sms\SynchronizedBundle;
 
 use Sms\SynchronizedBundle\DependencyInjection\Compiler\DriversPass;
-use Sms\SynchronizedBundle\DependencyInjection\Compiler\EventDispatcherPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
