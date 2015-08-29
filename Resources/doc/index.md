@@ -206,11 +206,6 @@ Each driver should be able to request extra configurations (name, type) to be pr
     <td>`EVENT_AFTER_RELEASE_LOCK`</td>
     <td>After the call to lock driver to release a lock returned</td>
  </tr>
- <tr>
-    <td>synchronized.event.before_return</td>
-    <td>`EVENT_BEFORE_RETURN`</td>
-    <td>Before returning the method call result to the caller</td>
- </tr>
  </table>
 <br/>
 
