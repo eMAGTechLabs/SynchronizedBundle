@@ -19,7 +19,8 @@ class LoggerTest extends AbstractTest
             'message' => 'synchronized.event.before_get_lock',
             array(
                 'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
-                'method' => 'doNothing'
+                'method' => 'doNothing',
+                'lock' => 'test_service_doNothing'
             )
         ),
         array(
@@ -27,7 +28,8 @@ class LoggerTest extends AbstractTest
             'message' => 'synchronized.event.success_get_lock',
             array(
                 'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
-                'method' => 'doNothing'
+                'method' => 'doNothing',
+                'lock' => 'test_service_doNothing'
             )
         ),
         array(
@@ -35,7 +37,8 @@ class LoggerTest extends AbstractTest
             'message' => 'synchronized.event.before_release_lock',
             array(
                 'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
-                'method' => 'doNothing'
+                'method' => 'doNothing',
+                'lock' => 'test_service_doNothing'
             )
         ),
         array(
@@ -43,14 +46,15 @@ class LoggerTest extends AbstractTest
             'message' => 'synchronized.event.after_release_lock',
             array(
                 'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
-                'method' => 'doNothing'
+                'method' => 'doNothing',
+                'lock' => 'test_service_doNothing'
             )
         )
     );
 
     public function testLogger()
     {
-        $decorator = new Decorator(new TestService(), 'test');
+        $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver(new Debug())->setMethod('doNothing');
         $decorator->addLock($lock);
