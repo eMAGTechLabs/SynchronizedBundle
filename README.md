@@ -16,7 +16,7 @@ new Sms\SynchronizedBundle()
 ````
 [Documentation](https://github.com/symfony-micro-services/SynchronizedBundle/blob/master/Resources/doc/index.md)
 
-[Supported drivers](https://github.com/symfony-micro-services/SynchronizedBundle/blob/master/Resources/drivers/index.md)
+[Supported drivers](https://github.com/symfony-micro-services/SynchronizedBundle/blob/master/Resources/doc/drivers.md)
 
 ##Contributing
 All contributions are welcome.
