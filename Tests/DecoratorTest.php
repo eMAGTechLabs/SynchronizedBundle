@@ -16,7 +16,7 @@ class DecoratorTest extends AbstractTest
 
     public function testGetWithMethodLock()
     {
-        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
+        $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver(new Debug())->setMethod('sleep1');
         $decorator->addLock($lock);
@@ -26,7 +26,7 @@ class DecoratorTest extends AbstractTest
 
     public function testGetWithArgumentLock()
     {
-        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
+        $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver(new Debug())->setMethod('sleep')->setArgumentIndex(1);
         $decorator->addLock($lock);
@@ -45,7 +45,8 @@ class DecoratorTest extends AbstractTest
         $p->start();
         sleep(1);
         $eventDispatcher = new TestEventDispatcher();
-        $decorator = new Decorator(new TestService(), 'test_service', $eventDispatcher);
+        $decorator = new Decorator(new TestService(), 'test_service');
+        $decorator->setEventDispatcher($eventDispatcher);
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
         $decorator->addLock($lock);
@@ -65,7 +66,7 @@ class DecoratorTest extends AbstractTest
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
         sleep(5);
-        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
+        $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep');
         $decorator->addLock($lock);
@@ -80,7 +81,7 @@ class DecoratorTest extends AbstractTest
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
-        $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
+        $decorator = new Decorator(new TestService(), 'test_service');
         $lock = new Lock();
         $lock->setDriver($fileLock)->setMethod('sleep')->setArgumentIndex(1);
         $decorator->addLock($lock);

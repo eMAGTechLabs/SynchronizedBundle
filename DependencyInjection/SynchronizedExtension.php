@@ -74,7 +74,10 @@ class SynchronizedExtension extends Extension
                     ->setPublic(false)
                     ->setDecoratedService($serviceId);
             if ($this->container->has('event_dispatcher')) {
-                $definition->addArgument(new Reference('event_dispatcher'));
+                $definition->addMethodCall('setEventDispatcher', array(new Reference('event_dispatcher')));
+            }
+            if ($this->container->has('logger')) {
+                $definition->addMethodCall('setLogger', array(new Reference('logger')));
             }
         }
         $definition->addMethodCall('addLock', array(new Reference($lockId)));

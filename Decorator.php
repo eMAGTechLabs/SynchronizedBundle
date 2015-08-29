@@ -16,6 +16,7 @@ class Decorator
     private $locks = array();
     private $lockPrefix;
     private $originalService;
+    private $originalServiceClass;
 
     /**
      *
@@ -23,11 +24,17 @@ class Decorator
      */
     private $eventDispatcher;
 
-    public function __construct($originalService, $lockPrefix, EventDispatcherInterface $eventDispatcher = null)
+    /**
+     *
+     * @var \Psr\Log\LoggerInterface;
+     */
+    private $logger;
+
+    public function __construct($originalService, $lockPrefix)
     {
         $this->originalService = $originalService;
+        $this->originalServiceClass = get_class($originalService);
         $this->lockPrefix = $lockPrefix;
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function addLock(Lock $lock)
@@ -48,23 +55,31 @@ class Decorator
     private function executeCriticalSection(Lock $lock, $method, $arguments)
     {
         $lockName = $this->getLockName($lock, $arguments);
-        $this->dispatchEvent(LockEvent::EVENT_BEFORE_GET_LOCK, $lock);
+        $this->dispatchAndLogEvent(LockEvent::EVENT_BEFORE_GET_LOCK, $lock, $lockName);
         if (!$lock->getDriver()->getLock($lockName)) {
-            $this->dispatchEvent(LockEvent::EVENT_FAILURE_GET_LOCK, $lock);
+            $this->dispatchAndLogEvent(LockEvent::EVENT_FAILURE_GET_LOCK, $lock, $lockName);
             throw new CannotAquireLockException($lockName);
         }
-        $this->dispatchEvent(LockEvent::EVENT_SUCCESS_GET_LOCK, $lock);
+        $this->dispatchAndLogEvent(LockEvent::EVENT_SUCCESS_GET_LOCK, $lock, $lockName);
         $return = call_user_func_array(array($this->originalService, $method), $arguments);
-        $this->dispatchEvent(LockEvent::EVENT_BEFORE_RELEASE_LOCK, $lock);
+        $this->dispatchAndLogEvent(LockEvent::EVENT_BEFORE_RELEASE_LOCK, $lock, $lockName);
         $lock->getDriver()->releaseLock($lockName);
-        $this->dispatchEvent(LockEvent::EVENT_AFTER_RELEASE_LOCK, $lock);
+        $this->dispatchAndLogEvent(LockEvent::EVENT_AFTER_RELEASE_LOCK, $lock, $lockName);
         return $return;
     }
 
-    private function dispatchEvent($name, Lock $lock)
+    private function dispatchAndLogEvent($name, Lock $lock, $lockName)
     {
         if ($this->eventDispatcher) {
             $this->eventDispatcher->dispatch($name, new LockEvent($lock, $this->originalService));
+        }
+        if ($this->logger) {
+            $context = array(
+                'service' => $this->originalServiceClass,
+                'method' => $lock->getMethod(),
+                'lock' => $lockName
+            );
+            $this->logger->log(\Psr\Log\LogLevel::INFO, $name, $context);
         }
     }
 
@@ -86,6 +101,18 @@ class Decorator
         }
 
         return $value;
+    }
+
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+        return $this;
+    }
+
+    public function setLogger(\Psr\Log\LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+        return $this;
     }
 
 }

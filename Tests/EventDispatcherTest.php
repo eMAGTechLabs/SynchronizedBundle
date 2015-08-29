@@ -4,7 +4,6 @@ namespace Sms\SynchronizedBundle\Tests;
 
 use Sms\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
 use Sms\SynchronizedBundle\Event\LockEvent;
-use Sms\SynchronizedBundle\SynchronizedBundle;
 use Sms\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\DependencyInjection\Definition;
 
