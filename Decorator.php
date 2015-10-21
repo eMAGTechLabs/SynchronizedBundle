@@ -61,10 +61,24 @@ class Decorator
             throw new CannotAquireLockException($lockName);
         }
         $this->dispatchAndLogEvent(LockEvent::EVENT_SUCCESS_GET_LOCK, $lock, $lockName);
-        $return = call_user_func_array(array($this->originalService, $method), $arguments);
+
+        // Call decorated service method
+        $decoratedException = null;
+        $return = null;
+        try {
+            $return = call_user_func_array(array($this->originalService, $method), $arguments);
+        } catch (\Exception $exc) {
+            $decoratedException = $exc;
+        }
+
         $this->dispatchAndLogEvent(LockEvent::EVENT_BEFORE_RELEASE_LOCK, $lock, $lockName);
         $lock->getDriver()->releaseLock($lockName);
         $this->dispatchAndLogEvent(LockEvent::EVENT_AFTER_RELEASE_LOCK, $lock, $lockName);
+
+        if (null !== $decoratedException) {
+            throw $decoratedException;
+        }
+
         return $return;
     }
 
