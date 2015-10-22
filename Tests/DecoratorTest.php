@@ -89,5 +89,20 @@ class DecoratorTest extends AbstractTest
         $p->stop();
         return $this->assertTrue(true);
     }
+    
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage something exception
+     */
+    public function testLockedMethodThatThrowsException() {
+        $decorator = new Decorator(new TestService(), 'test_service');
+        $lock = new Lock();
+        $lock->setDriver(new Debug())->setMethod('doSomething');
+        $decorator->addLock($lock);
+        
+        $decorator->doSomething(function() {
+            throw new \Exception('something exception');
+        });
+    }
 
 }

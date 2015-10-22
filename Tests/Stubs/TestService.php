@@ -26,4 +26,9 @@ class TestService
         
     }
 
+    public function doSomething($something)
+    {
+        call_user_func($something);
+    }
+
 }
