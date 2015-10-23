@@ -55,12 +55,12 @@ class Decorator
     private function executeCriticalSection(Lock $lock, $method, $arguments)
     {
         $lockName = $this->getLockName($lock, $arguments);
-        $this->dispatchAndLogEvent(LockEvent::EVENT_BEFORE_GET_LOCK, $lock, $lockName);
+        $this->logAndDispatchEvent(LockEvent::EVENT_BEFORE_GET_LOCK, $lock, $lockName);
         if (!$lock->getDriver()->getLock($lockName)) {
-            $this->dispatchAndLogEvent(LockEvent::EVENT_FAILURE_GET_LOCK, $lock, $lockName);
+            $this->logAndDispatchEvent(LockEvent::EVENT_FAILURE_GET_LOCK, $lock, $lockName);
             throw new CannotAquireLockException($lockName);
         }
-        $this->dispatchAndLogEvent(LockEvent::EVENT_SUCCESS_GET_LOCK, $lock, $lockName);
+        $this->logAndDispatchEvent(LockEvent::EVENT_SUCCESS_GET_LOCK, $lock, $lockName);
 
         // Call decorated service method
         $decoratedException = null;
@@ -71,9 +71,9 @@ class Decorator
             $decoratedException = $exc;
         }
 
-        $this->dispatchAndLogEvent(LockEvent::EVENT_BEFORE_RELEASE_LOCK, $lock, $lockName);
+        $this->logAndDispatchEvent(LockEvent::EVENT_BEFORE_RELEASE_LOCK, $lock, $lockName);
         $lock->getDriver()->releaseLock($lockName);
-        $this->dispatchAndLogEvent(LockEvent::EVENT_AFTER_RELEASE_LOCK, $lock, $lockName);
+        $this->logAndDispatchEvent(LockEvent::EVENT_AFTER_RELEASE_LOCK, $lock, $lockName);
 
         if (null !== $decoratedException) {
             throw $decoratedException;
@@ -82,11 +82,8 @@ class Decorator
         return $return;
     }
 
-    private function dispatchAndLogEvent($name, Lock $lock, $lockName)
+    private function logAndDispatchEvent($name, Lock $lock, $lockName)
     {
-        if ($this->eventDispatcher) {
-            $this->eventDispatcher->dispatch($name, new LockEvent($lock, $this->originalService));
-        }
         if ($this->logger) {
             $context = array(
                 'service' => $this->originalServiceClass,
@@ -94,6 +91,9 @@ class Decorator
                 'lock' => $lockName
             );
             $this->logger->log(\Psr\Log\LogLevel::INFO, $name, $context);
+        }
+        if ($this->eventDispatcher) {
+            $this->eventDispatcher->dispatch($name, new LockEvent($lock, $this->originalService));
         }
     }
 
