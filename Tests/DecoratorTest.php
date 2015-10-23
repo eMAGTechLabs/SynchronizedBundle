@@ -43,7 +43,7 @@ class DecoratorTest extends AbstractTest
         $fileLock->clearLocks();
         $p = new Process('php Tests/FileLockCommand.php test:file -s 5');
         $p->start();
-        sleep(1);
+        sleep(3);
         $eventDispatcher = new TestEventDispatcher();
         $decorator = new Decorator(new TestService(), 'test_service');
         $decorator->setEventDispatcher($eventDispatcher);
