@@ -1,7 +1,6 @@
 #SynchronizedBundle
 [![Build Status](https://api.travis-ci.org/eMAGTechLabs/SynchronizedBundle.png?branch=master)](https://travis-ci.org/eMAGTechLabs/SynchronizedBundle)
-[![Coverage Status](https://coveralls.io/repos/eMAGTechLabs/SynchronizedBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/eMAGTechLabs/SynchronizedBundle?branch=master)
-
+[![Coverage Status](https://coveralls.io/repos/github/eMAGTechLabs/SynchronizedBundle/badge.svg?branch=master)](https://coveralls.io/github/eMAGTechLabs/SynchronizedBundle?branch=master)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd/big.png)](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd)
 
