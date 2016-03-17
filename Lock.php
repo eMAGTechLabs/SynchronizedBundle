@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle;
+namespace Emag\SynchronizedBundle;
 
 class Lock
 {

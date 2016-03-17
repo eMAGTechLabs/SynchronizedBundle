@@ -170,7 +170,7 @@ synchronized:
 
 Each driver should be able to request extra configurations (name, type) to be provided.
 
-[planned supported drivers](https://github.com/symfony-micro-services/SynchronizedBundle/blob/master/Resources/doc/drivers.md)
+[planned supported drivers](https://github.com/eMAGTechLabs/SynchronizedBundle/blob/master/Resources/doc/drivers.md)
 
 ##Events
  The following events are dispatched
@@ -178,7 +178,7 @@ Each driver should be able to request extra configurations (name, type) to be pr
  <table>
  <tr>
     <td>Event name</td>
-    <td>Class constant `Sms\SynchronizedBundle\Event`</td>
+    <td>Class constant `Emag\SynchronizedBundle\Event`</td>
     <td>When</td>
  </tr>
  <tr>
@@ -213,4 +213,4 @@ Each driver should be able to request extra configurations (name, type) to be pr
  Intensive logging with *debug* level to help development. Comprehensive logging with *info* level that will be useful in production.
 
 ##Code quality
- SynchronizedBundle have (and will maintain) ![Coverage Status](https://coveralls.io/repos/symfony-micro-services/SynchronizedBundle/badge.svg?branch=master&service=github) and ![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd/big.png)
+ SynchronizedBundle have (and will maintain) ![Coverage Status](https://coveralls.io/repos/eMAGTechLabs/SynchronizedBundle/badge.svg?branch=master&service=github) and ![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac3ccb67-8db2-49a3-92cb-be7730e7d5fd/big.png)

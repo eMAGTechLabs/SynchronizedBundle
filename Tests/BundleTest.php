@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests;
+namespace Emag\SynchronizedBundle\Tests;
 
 use Symfony\Component\DependencyInjection\Definition;
 
@@ -32,7 +32,7 @@ class BundleTest extends AbstractTest
                 )
         )));
 
-        $this->assertEquals($container->getDefinition('synchronized_driver.debug')->getClass(), 'Sms\SynchronizedBundle\Driver\Debug');
+        $this->assertEquals($container->getDefinition('synchronized_driver.debug')->getClass(), 'Emag\SynchronizedBundle\Driver\Debug');
     }
 
     public function testFileDriverConfiguration()
@@ -43,7 +43,7 @@ class BundleTest extends AbstractTest
                         'driver' => 'file'
                     ))
         )));
-        $this->assertEquals($container->getDefinition('synchronized_driver.file')->getClass(), 'Sms\SynchronizedBundle\Driver\File');
+        $this->assertEquals($container->getDefinition('synchronized_driver.file')->getClass(), 'Emag\SynchronizedBundle\Driver\File');
     }
     
     public function testSameServiceDifferentMethodsLocks()
@@ -64,8 +64,8 @@ class BundleTest extends AbstractTest
     }
 
     /**
-     * @expectedException Sms\SynchronizedBundle\Exception\InvalidDriverException
-     * @expectedExceptionMessage Class stdClass must implement Sms\SynchronizedBundle\Driver\DriverInterface in order to be defined as driver
+     * @expectedException Emag\SynchronizedBundle\Exception\InvalidDriverException
+     * @expectedExceptionMessage Class stdClass must implement Emag\SynchronizedBundle\Driver\DriverInterface in order to be defined as driver
      */
     public function testInvalidDriverClassConfiguration()
     {
@@ -150,7 +150,7 @@ class BundleTest extends AbstractTest
                         'driver' => 'new'
                     ))
         )), false);
-        $definition = new Definition('Sms\SynchronizedBundle\Driver\Debug');
+        $definition = new Definition('Emag\SynchronizedBundle\Driver\Debug');
         $definition->addTag('synchronized.driver', array('type' => 'new'));
         $container->addDefinitions(array('new' => $definition));
         $container->compile();

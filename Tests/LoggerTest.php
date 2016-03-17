@@ -1,13 +1,13 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests;
+namespace Emag\SynchronizedBundle\Tests;
 
-use Sms\SynchronizedBundle\Decorator;
-use Sms\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
-use Sms\SynchronizedBundle\Driver\Debug;
-use Sms\SynchronizedBundle\Lock;
-use Sms\SynchronizedBundle\Tests\Stubs\TestLogger;
-use Sms\SynchronizedBundle\Tests\Stubs\TestService;
+use Emag\SynchronizedBundle\Decorator;
+use Emag\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
+use Emag\SynchronizedBundle\Driver\Debug;
+use Emag\SynchronizedBundle\Lock;
+use Emag\SynchronizedBundle\Tests\Stubs\TestLogger;
+use Emag\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\DependencyInjection\Definition;
 
 class LoggerTest extends AbstractTest
@@ -18,7 +18,7 @@ class LoggerTest extends AbstractTest
             'level' => 'info',
             'message' => 'synchronized.event.before_get_lock',
             array(
-                'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
+                'service' => 'Emag\SynchronizedBundle\Tests\Stubs\TestService',
                 'method' => 'doNothing',
                 'lock' => 'test_service_doNothing'
             )
@@ -27,7 +27,7 @@ class LoggerTest extends AbstractTest
             'level' => 'info',
             'message' => 'synchronized.event.success_get_lock',
             array(
-                'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
+                'service' => 'Emag\SynchronizedBundle\Tests\Stubs\TestService',
                 'method' => 'doNothing',
                 'lock' => 'test_service_doNothing'
             )
@@ -36,7 +36,7 @@ class LoggerTest extends AbstractTest
             'level' => 'info',
             'message' => 'synchronized.event.before_release_lock',
             array(
-                'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
+                'service' => 'Emag\SynchronizedBundle\Tests\Stubs\TestService',
                 'method' => 'doNothing',
                 'lock' => 'test_service_doNothing'
             )
@@ -45,7 +45,7 @@ class LoggerTest extends AbstractTest
             'level' => 'info',
             'message' => 'synchronized.event.after_release_lock',
             array(
-                'service' => 'Sms\SynchronizedBundle\Tests\Stubs\TestService',
+                'service' => 'Emag\SynchronizedBundle\Tests\Stubs\TestService',
                 'method' => 'doNothing',
                 'lock' => 'test_service_doNothing'
             )
@@ -69,8 +69,8 @@ class LoggerTest extends AbstractTest
     public function testLoadLogger()
     {
         $container = $this->getContainer();
-        $container->addDefinitions(array('test_service' => new Definition('Sms\SynchronizedBundle\Tests\Stubs\TestService')));
-        $loggerDefinition = new Definition('Sms\SynchronizedBundle\Tests\Stubs\TestLogger');
+        $container->addDefinitions(array('test_service' => new Definition('Emag\SynchronizedBundle\Tests\Stubs\TestService')));
+        $loggerDefinition = new Definition('Emag\SynchronizedBundle\Tests\Stubs\TestLogger');
         $container->addDefinitions(array('logger' => $loggerDefinition));
 
         $extension = new SynchronizedExtension();

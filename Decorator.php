@@ -1,9 +1,9 @@
 <?php
 
-namespace Sms\SynchronizedBundle;
+namespace Emag\SynchronizedBundle;
 
-use Sms\SynchronizedBundle\Event\LockEvent;
-use Sms\SynchronizedBundle\Exception\CannotAquireLockException;
+use Emag\SynchronizedBundle\Event\LockEvent;
+use Emag\SynchronizedBundle\Exception\CannotAquireLockException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Decorator

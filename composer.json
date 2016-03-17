@@ -1,7 +1,7 @@
 {
-    "name": "symfony-micro-services/synchronized-bundle",
-    "description": "Symfony microservices Synchronized bundle",
-    "homepage": "https://github.com/symfony-micro-services/SynchronizedBundle",
+    "name": "emag/synchronized-bundle",
+    "description": "Synchronized bundle",
+    "homepage": "https://github.com/eMAGTechLabs/SynchronizedBundle",
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sms\\SynchronizedBundle\\": ""
+            "Emag\\SynchronizedBundle\\": ""
         }
     }
 }

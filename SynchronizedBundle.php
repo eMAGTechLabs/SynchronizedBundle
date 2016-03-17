@@ -1,8 +1,8 @@
 <?php
 
-namespace Sms\SynchronizedBundle;
+namespace Emag\SynchronizedBundle;
 
-use Sms\SynchronizedBundle\DependencyInjection\Compiler\DriversPass;
+use Emag\SynchronizedBundle\DependencyInjection\Compiler\DriversPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

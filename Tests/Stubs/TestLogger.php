@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests\Stubs;
+namespace Emag\SynchronizedBundle\Tests\Stubs;
 
 class TestLogger implements \Psr\Log\LoggerInterface
 {

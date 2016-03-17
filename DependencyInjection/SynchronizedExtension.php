@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\DependencyInjection;
+namespace Emag\SynchronizedBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
@@ -53,7 +53,7 @@ class SynchronizedExtension extends Extension
                 throw new InvalidConfigurationException(sprintf('cannot load %s, definition %s already exists', $name, $id));
             }
 
-            $lockDefinition = new Definition('Sms\SynchronizedBundle\Lock');
+            $lockDefinition = new Definition('Emag\SynchronizedBundle\Lock');
             $lockDefinition->addMethodCall('setMethod', array($method));
             $lockDefinition->addMethodCall('setArgumentIndex', array($argument));
             $lockDefinition->addMethodCall('setDriver', array(new Reference(sprintf('synchronized_driver.%s', $driver))));
@@ -68,7 +68,7 @@ class SynchronizedExtension extends Extension
         if ($this->container->has($synchronizedServiceId)) {
             $definition = $this->container->findDefinition($synchronizedServiceId);
         } else {
-            $definition = $this->container->register($synchronizedServiceId, 'Sms\SynchronizedBundle\Decorator');
+            $definition = $this->container->register($synchronizedServiceId, 'Emag\SynchronizedBundle\Decorator');
             $definition->addArgument(new Reference(sprintf('%s.inner', $synchronizedServiceId)))
                     ->addArgument($serviceId)
                     ->setPublic(false)

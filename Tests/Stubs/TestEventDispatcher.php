@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests\Stubs;
+namespace Emag\SynchronizedBundle\Tests\Stubs;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;

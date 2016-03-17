@@ -1,9 +1,9 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests;
+namespace Emag\SynchronizedBundle\Tests;
 
-use Sms\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
-use Sms\SynchronizedBundle\SynchronizedBundle;
+use Emag\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
+use Emag\SynchronizedBundle\SynchronizedBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
@@ -21,7 +21,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $extension = new SynchronizedExtension();
         $extension->load($array, $container);
         $container->registerExtension($extension);
-        $container->addDefinitions(array('test_service' => new Definition('Sms\SynchronizedBundle\Tests\Stubs\TestService')));
+        $container->addDefinitions(array('test_service' => new Definition('Emag\SynchronizedBundle\Tests\Stubs\TestService')));
 
         $bundle = new SynchronizedBundle();
         $bundle->build($container);

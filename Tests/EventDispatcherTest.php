@@ -1,10 +1,10 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests;
+namespace Emag\SynchronizedBundle\Tests;
 
-use Sms\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
-use Sms\SynchronizedBundle\Event\LockEvent;
-use Sms\SynchronizedBundle\Tests\Stubs\TestService;
+use Emag\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
+use Emag\SynchronizedBundle\Event\LockEvent;
+use Emag\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\DependencyInjection\Definition;
 
 class EventDispatcherTest extends AbstractTest
@@ -13,8 +13,8 @@ class EventDispatcherTest extends AbstractTest
     public function testGetLockEvents()
     {
         $container = $this->getContainer();
-        $container->addDefinitions(array('test_service' => new Definition('Sms\SynchronizedBundle\Tests\Stubs\TestService')));
-        $eventDispatcherDefinition = new Definition('Sms\SynchronizedBundle\Tests\Stubs\TestEventDispatcher');
+        $container->addDefinitions(array('test_service' => new Definition('Emag\SynchronizedBundle\Tests\Stubs\TestService')));
+        $eventDispatcherDefinition = new Definition('Emag\SynchronizedBundle\Tests\Stubs\TestEventDispatcher');
         $container->addDefinitions(array('event_dispatcher' => $eventDispatcherDefinition));
         
         $extension = new SynchronizedExtension();

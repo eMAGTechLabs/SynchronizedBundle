@@ -2,11 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Sms\SynchronizedBundle\Decorator;
-use Sms\SynchronizedBundle\Driver\File;
-use Sms\SynchronizedBundle\Lock;
-use Sms\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
-use Sms\SynchronizedBundle\Tests\Stubs\TestService;
+use Emag\SynchronizedBundle\Decorator;
+use Emag\SynchronizedBundle\Driver\File;
+use Emag\SynchronizedBundle\Lock;
+use Emag\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
+use Emag\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Event;
+namespace Emag\SynchronizedBundle\Event;
 
-use Sms\SynchronizedBundle\Lock;
+use Emag\SynchronizedBundle\Lock;
 use Symfony\Component\EventDispatcher\Event;
 
 class LockEvent extends Event

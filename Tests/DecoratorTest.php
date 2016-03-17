@@ -1,14 +1,14 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Tests;
+namespace Emag\SynchronizedBundle\Tests;
 
-use Sms\SynchronizedBundle\Decorator;
-use Sms\SynchronizedBundle\Driver\Debug;
-use Sms\SynchronizedBundle\Driver\File;
-use Sms\SynchronizedBundle\Event\LockEvent;
-use Sms\SynchronizedBundle\Lock;
-use Sms\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
-use Sms\SynchronizedBundle\Tests\Stubs\TestService;
+use Emag\SynchronizedBundle\Decorator;
+use Emag\SynchronizedBundle\Driver\Debug;
+use Emag\SynchronizedBundle\Driver\File;
+use Emag\SynchronizedBundle\Event\LockEvent;
+use Emag\SynchronizedBundle\Lock;
+use Emag\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
+use Emag\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\Process\Process;
 
 class DecoratorTest extends AbstractTest
@@ -34,7 +34,7 @@ class DecoratorTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Sms\SynchronizedBundle\Exception\CannotAquireLockException
+     * @expectedException \Emag\SynchronizedBundle\Exception\CannotAquireLockException
      * @expectedExceptionMessage test_service_sleep
      */
     public function testFailedFileDriver()

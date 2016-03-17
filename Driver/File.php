@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Driver;
+namespace Emag\SynchronizedBundle\Driver;
 
 class File extends AbstractDriver
 {

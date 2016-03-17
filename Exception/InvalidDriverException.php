@@ -1,6 +1,6 @@
 <?php
 
-namespace Sms\SynchronizedBundle\Exception;
+namespace Emag\SynchronizedBundle\Exception;
 
 class InvalidDriverException extends SynchronizedException
 {
