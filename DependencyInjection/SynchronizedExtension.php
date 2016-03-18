@@ -36,7 +36,6 @@ class SynchronizedExtension extends Extension
         if (!$container->hasParameter('synchronized.lock_path')) {
             $container->setParameter('synchronized.lock_path', '%kernel.root_dir%/synchronized.lock');
         }
-        $loader->load('synchronized.xml');
         $loader->load('drivers.xml');
         $this->loadLocks($config, $container);
     }
