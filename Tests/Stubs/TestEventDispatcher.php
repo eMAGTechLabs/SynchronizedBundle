@@ -23,32 +23,36 @@ class TestEventDispatcher implements EventDispatcherInterface
 
     public function addListener($eventName, $listener, $priority = 0)
     {
-        
+
     }
 
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
-        
+
     }
 
     public function getListeners($eventName = null)
     {
-        
+
     }
 
     public function hasListeners($eventName = null)
     {
-        
+
     }
 
     public function removeListener($eventName, $listener)
     {
-        
+
     }
 
     public function removeSubscriber(EventSubscriberInterface $subscriber)
     {
-        
+
     }
 
+    public function getListenerPriority($eventName, $listener)
+    {
+
+    }
 }
