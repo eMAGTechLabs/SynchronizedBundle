@@ -7,6 +7,7 @@ use Emag\SynchronizedBundle\SynchronizedBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\Filesystem\Filesystem;
 
 abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,6 +24,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $container->registerExtension($extension);
         $container->addDefinitions(array('test_service' => new Definition('Emag\SynchronizedBundle\Tests\Stubs\TestService')));
 
+
         $bundle = new SynchronizedBundle();
         $bundle->build($container);
         $compile && $container->compile();
@@ -31,11 +33,14 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 
     protected function getContainer()
     {
-        return new ContainerBuilder(new ParameterBag(array('kernel.debug' => false,
+        $container = new ContainerBuilder(new ParameterBag(array('kernel.debug' => false,
             'kernel.cache_dir' => sys_get_temp_dir(),
             'kernel.environment' => 'test',
             'kernel.root_dir' => __DIR__ . '/../../../../', // src dir
         )));
+
+        $container->addDefinitions(array('filesystem' => new Definition(get_class($this->getMockBuilder(Filesystem::class)->getMock()))));
+        return $container;
     }
 
 }

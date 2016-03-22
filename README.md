@@ -11,7 +11,7 @@ via composer
 ````
 and load the bundle in your AppKernel.php
 ````
-new Emag\SynchronizedBundle()
+new Emag\SynchronizedBundle\SynchronizedBundle()
 ````
 [Documentation](https://github.com/eMAGTechLabs/SynchronizedBundle/blob/master/Resources/doc/index.md)
 

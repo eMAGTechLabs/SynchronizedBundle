@@ -9,6 +9,7 @@ use Emag\SynchronizedBundle\Event\LockEvent;
 use Emag\SynchronizedBundle\Lock;
 use Emag\SynchronizedBundle\Tests\Stubs\TestEventDispatcher;
 use Emag\SynchronizedBundle\Tests\Stubs\TestService;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
 class DecoratorTest extends AbstractTest
@@ -39,7 +40,7 @@ class DecoratorTest extends AbstractTest
      */
     public function testFailedFileDriver()
     {
-        $fileLock = new File('lock');
+        $fileLock = new File(new Filesystem(), 'lock');
         $fileLock->clearLocks();
         $p = new Process('php Tests/FileLockCommand.php test:file -s 5');
         $p->start();
@@ -61,7 +62,7 @@ class DecoratorTest extends AbstractTest
     
     public function testSuccessFileDriver()
     {
-        $fileLock = new File('lock');
+        $fileLock = new File(new Filesystem(), 'lock');
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();
@@ -77,7 +78,7 @@ class DecoratorTest extends AbstractTest
     
     public function testFileDriverWithArrayArgument()
     {
-        $fileLock = new File('lock');
+        $fileLock = new File(new Filesystem(), 'lock');
         $fileLock->clearLocks();
         $p = new Process('/usr/bin/php Tests/FileLockCommand.php test:file -s 1');
         $p->start();

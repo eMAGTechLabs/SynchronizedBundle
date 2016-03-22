@@ -8,6 +8,7 @@
             <tag name='synchronized.driver' type='debug'/>
         </service>
         <service id="synchronized_driver.file" class="Emag\SynchronizedBundle\Driver\File">
+            <argument type="service" id="filesystem" />
             <argument>%synchronized.lock_path%</argument>
             <tag name='synchronized.driver' type='file'/>
         </service>

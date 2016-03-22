@@ -26,7 +26,7 @@ class FileLockCommand extends Command
     {
         $decorator = new Decorator(new TestService(), 'test_service',  new TestEventDispatcher());
         $lock = new Lock();
-        $lock->setDriver(new File('lock'))->setMethod('sleep');
+        $lock->setDriver(new File(new \Symfony\Component\Filesystem\Filesystem(), 'lock'))->setMethod('sleep');
         $decorator->addLock($lock);
         $decorator->sleep((int)$input->getOption('seconds'));
         $output->write('done');

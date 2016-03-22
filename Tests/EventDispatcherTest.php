@@ -6,6 +6,7 @@ use Emag\SynchronizedBundle\DependencyInjection\SynchronizedExtension;
 use Emag\SynchronizedBundle\Event\LockEvent;
 use Emag\SynchronizedBundle\Tests\Stubs\TestService;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\Filesystem\Filesystem;
 
 class EventDispatcherTest extends AbstractTest
 {

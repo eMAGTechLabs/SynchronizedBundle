@@ -2,6 +2,8 @@
 
 namespace Emag\SynchronizedBundle\Driver;
 
+use Symfony\Component\Filesystem\Filesystem;
+
 class File extends AbstractDriver
 {
 
@@ -9,10 +11,10 @@ class File extends AbstractDriver
     private $path;
     private $fileSystem;
 
-    public function __construct($path)
+    public function __construct(Filesystem $filesystem, $lockPath)
     {
-        $this->path = $path;
-        $this->fileSystem = new \Symfony\Component\Filesystem\Filesystem();
+        $this->path = $lockPath;
+        $this->fileSystem = $filesystem;
     }
 
     protected function lock($lockId)
