@@ -46,7 +46,7 @@ class Decorator
     {
         foreach ($this->locks as $lock) {
             if ($name === $lock->getMethod()) {
-                $this->executeCriticalSection($lock, $name, $arguments);
+                return $this->executeCriticalSection($lock, $name, $arguments);
             }
         }
         return call_user_func_array(array($this->originalService, $name), $arguments);
