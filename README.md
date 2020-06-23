@@ -7,7 +7,7 @@
 ##Instalation
 via composer
 ````
-{"emag/synchronized-bundle": "0.0.2"}
+{"emag-tech-labs/synchronized-bundle": "0.0.2"}
 ````
 and load the bundle in your AppKernel.php
 ````

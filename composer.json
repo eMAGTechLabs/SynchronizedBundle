@@ -1,5 +1,5 @@
 {
-    "name": "emag/synchronized-bundle",
+    "name": "emag-tech-labs/synchronized-bundle",
     "description": "Synchronized bundle",
     "homepage": "https://github.com/eMAGTechLabs/SynchronizedBundle",
     "license": "MIT",
@@ -8,6 +8,10 @@
             "name": "ilyes kooli",
             "email": "kooli.ilyes@gmail.com",
             "homepage": "http://www.ilyeskooli.com"
+        },
+        {
+            "name": "TechLabs Admin",
+            "email": "techlabs@emag.ro"
         }
     ],
     "require": {
